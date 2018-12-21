@@ -516,7 +516,7 @@ client.on("message", message => {
     });
   }
 
-};
+
 
 
 
