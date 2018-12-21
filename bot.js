@@ -350,7 +350,7 @@ client.on('message', message => {
 
  message.author.sendMessage(`
 
-``Dvbot``
+
  
 **بامكانك دعوة البوت من هنا
 
