@@ -371,7 +371,7 @@ client.on('message', message => {
 
  message.author.sendMessage(`
 
-``Dvbot``
+
  
 **بامكانك دعوة البوت من هنا
 
@@ -510,9 +510,7 @@ client.on("message", message => {
 
   if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** لا يوجد لدي برمشن Manage Roles **');
 
-  if (message.guild.member(user).removeRole(muteRole.id)) {
-      client.channels.get(modlog.id).send({embed});
-  } else {
+
     message.guild.member(user).removeRole(muteRole).then(() => {
       client.channels.get(modlog.id).send({embed});
     });
@@ -589,7 +587,7 @@ client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === "*help") {
 	    
-                        message.channel.send('**Choose**: *help-ar ➾ arabic | *help-en ➾ english');
+                        message.channel.send('**Choose**: *helpar ➾ arabic | *helpen ➾ english');
 
     }
 });
