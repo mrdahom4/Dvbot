@@ -140,7 +140,7 @@ client.on('message', function(message) {
 	
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content === prefix + "helpen") {
+     if (message.content === "*helpen") {
 		 message.channel.send('**The Message Was Sent On Private**');
             
 	
@@ -231,7 +231,7 @@ bot invite link: https://discordapp.com/oauth2/authorize?client_id=3887008638936
 
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content === prefix + "helpar") {
+     if (message.content ==="*helpar") {
 		 message.channel.send('**تم ارسالك في الخاص**');
             
 	
@@ -320,7 +320,7 @@ Server Support : https://discord.gg/BzVpKJB
 });
 
 client.on('message', message => {
-    if (message.content.startsWith(prefix + "invs")) {
+    if (message.content.startsWith("*invs")) {
      if(!message.channel.guild) return;
 if (message.author.bot) return;
         message.channel.createInvite({
@@ -345,7 +345,7 @@ if (message.author.bot) return;
 
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content === prefix + "own") {
+     if (message.content === "*own") {
 
 
  message.author.sendMessage(`
@@ -366,7 +366,7 @@ message.channel.send('**تم الارسال في الخاص**');
 
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content === prefix + "invite") {
+     if (message.content === "*invite") {
 
 
  message.author.sendMessage(`
@@ -387,7 +387,7 @@ message.channel.send('**تم الارسال في الخاص**');
 
 
 client.on('message', function(msg) {
-    if(msg.content.startsWith (prefix  + 'server')) {
+    if(msg.content.startsWith ('*server')) {
       let embed = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setThumbnail(msg.guild.iconURL)
@@ -411,7 +411,7 @@ client.on('message', message => {
         if (message.guild) {
        let embed = new Discord.RichEmbed()
         let args = message.content.split(' ').slice(1).join(' ');
-    if(message.content.split(' ')[0] == prefix + 'bc') {
+    if(message.content.split(' ')[0] == '*bc') {
         if (!args[1]) {
     message.channel.send("**.bc <message>**");
     return;
@@ -589,7 +589,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content === prefix + "help") {
+     if (message.content === "*help") {
 	    
                         message.channel.send('**Choose**: *help-ar ➾ arabic | *help-en ➾ english');
 
@@ -619,7 +619,7 @@ client.on('guildCreate', guild => {
 
 client.on('message', message => {
     var prefix = "*"
-    if (message.content === prefix + "date") {
+    if (message.content === "*date") {
         var currentTime = new Date(),
             السنة = currentTime.getFullYear(),
             الشهر = currentTime.getMonth() + 1,
@@ -714,7 +714,7 @@ channel.send({embed : embed});
 });
 
 client.on("message", msg => {
-  if(msg.content === '*' + "id") {
+  if(msg.content === "*id") {
       const embed = new Discord.RichEmbed();
   embed.addField(":trident:|Username", `${msg.author.username}#${msg.author.discriminator}`, true)
           .addField(":id:|iD", `${msg.author.id}`, true)
