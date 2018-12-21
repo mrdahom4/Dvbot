@@ -150,7 +150,7 @@ client.on('message', message => {
  message.author.sendMessage(`
  **
 __~~DvBot~~__ By:! Lòrans. ♪#3910
-``DvBot``
+
 ╔[❖════════════❖]╗
              Prefix = ' * '
 ╚[❖════════════❖]╝
@@ -241,7 +241,7 @@ client.on('message', message => {
  message.author.sendMessage(`
  **
 __~~DvBot~~__ By:! Lòrans. ♪#3910
-``DvBot``
+
 ╔[❖════════════❖]╗
                   Prefix = ' * '
 ╚[❖════════════❖]╝
