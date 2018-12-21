@@ -156,6 +156,7 @@ client.on('message', function(message) {
 	
 client.on('message', message => {
     if (message.author.bot) return;
+	message.react("✅")
      if (message.content === "*helpen") {
 		 message.channel.send('**The Message Was Sent On Private**');
             
@@ -247,6 +248,7 @@ bot invite link: https://discordapp.com/oauth2/authorize?client_id=3887008638936
 
 client.on('message', message => {
     if (message.author.bot) return;
+	message.react("✅")
      if (message.content ==="*helpar") {
 		 message.channel.send('**تم ارسالك في الخاص**');
             
