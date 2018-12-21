@@ -603,6 +603,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if (message.author.bot) return;
+	message.react("✅")
      if (message.content === "*help") {
 	    
                         message.channel.send('**Choose**: *helpar ➾ arabic | *helpen ➾ english');
