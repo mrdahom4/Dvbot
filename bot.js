@@ -320,7 +320,7 @@ Server Support : https://discord.gg/BzVpKJB
 });
 
 client.on('message', message => {
-    if (message.content.startsWith("*invs")) {
+    if (message.content.startsWith("رابط")) {
      if(!message.channel.guild) return;
 if (message.author.bot) return;
         message.channel.createInvite({
@@ -335,7 +335,7 @@ if (message.author.bot) return;
         .setDescription("تم ارسالك في الخاص")
    .setFooter("اسم سيررك ",'رابط صوره سيرفرك')
                    .setTimestamp()
-				message.channel.send('**تم الارسال في الخاص**');
+				message.channel.send('** تم أرسال الرابط برسالة خاصة **');
 
 
       message.channel.sendEmbed(Embed11).then(message => {message.delete(3000)})
