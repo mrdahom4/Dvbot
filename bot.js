@@ -6,6 +6,10 @@ const fs = require('fs');
 const getYoutubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
 const yt_api_key = "AIzaSyDeoIH0u1e72AtfpwSKKOSy3IPp2UHzqi4";
+const fs = require("fs"); 
+const Canvas = require("canvas");
+const jimp = require("jimp");
+let points = {}
 var prefix = "#";
 
 client.on('ready', () => {
@@ -694,14 +698,9 @@ client.on("message", msg => {
 });
 
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const fs = require("fs"); 
-const Canvas = require("canvas");
-const jimp = require("jimp");
-   let points = {}
+
    
-const prefix = '*'
+const prefix = '#'
   client.on('message', message => {
     if(message.author.bot) return;
             if (!points[message.author.id]) points[message.author.id] = {
