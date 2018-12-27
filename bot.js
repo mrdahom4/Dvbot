@@ -1,5 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const ytdl = require('ytdl-core');
+const request = require('request');
+const fs = require('fs');
+const getYoutubeID = require('get-youtube-id');
+const fetchVideoInfo = require('youtube-info');
+const yt_api_key = "AIzaSyDeoIH0u1e72AtfpwSKKOSy3IPp2UHzqi4";
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -155,99 +161,26 @@ client.on('message', function(message) {
 
 	
 client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === "*helpen") {
-		 message.channel.send('**The Message Was Sent On Private**');
-            
+     if (message.content === "-bot") {
+            if(!message.channel.guild) return message.reply('** This command only for servers **');
+     let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+  .addField("**عدد السيرفرات الي فيها البوت:**" , client.guilds.size)
+  .addField("**المستخدمين:**", client.users.size)
+  .addField("**قنوات:**", client.channels.size)
+  .setTimestamp()
+message.channel.sendEmbed(embed);
+    }
+}); 
 	
 		 
 
 
- message.author.sendMessage(`
- **
-__~~DvBot~~__ By:! Lòrans. ♪#3910
-
-╔[❖════════════❖]╗
-             Prefix = ' * '
-╚[❖════════════❖]╝
-
-╔[❖════════════❖]╗
-             Admin Commands
-╚[❖════════════❖]╝
-
- ❖ *kick <mention > ➾ kick member from server
-
- ❖ *clear ➾ clear chat ( not ready yet fixing)
- 
- ❖ *mute < mention > ➾ mute member
-
- ❖ *unmute <mention> ➾ unmute member
-
- ❖ *ct <name> ➾ create channel
-
- ❖ *cv <name> create voice channel
-  
- ❖ *bc <message> ➾ message all members in server
-
- ❖ *voice <name> ➾ The work of Rom Vioce Onlin
-╔[❖════════════❖]╗
-            General  Commands
-╚[❖════════════❖]╝
-
-❖ *roll <number> ➾ role 
-
-❖ *date ➾ see date
-
-❖ *member ➾ members info
-
-❖ *ser-av ➾ server avatar
-
-❖ *invs ➾ server invite link
-
-❖ *own ➾ bot owner
-
-❖ *id ➾ your id
-
-❖ *avatar ➾ your avatar account
-
-❖ *help-en ➾ help by arabic
-
-❖ *help-en ➾ help by english
-
-❖ *ping ➾ to see ping
-
-❖ *bot ➾ bot informations 
-
-❖ *server ➾ server informations 
-
-❖ *invite ➾ bot invite link
-
-╔[❖════════════❖]╗
-                    Welcome
-╚[❖════════════❖]╝
-
-to enable welcome message do channel name "wlc"
-
-
-==================================================================
-
-Server support: https://discord.gg/twdHNJT
-
-==================================================================
-
-bot invite link: https://discordapp.com/oauth2/authorize?client_id=388700863893602304&scope=bot&permissions=0
-
-==================================================================**
-
-`);
-
-    }
-});
 
 
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content ==="*helpar") {
+     if (message.content ==="*help") {
 		 message.channel.send('**تم ارسالك في الخاص**');
             
 	
@@ -318,6 +251,32 @@ __~~DvBot~~__ By:! Lòrans. ♪#3910
 ╚[❖════════════❖]╝
 
 لتفعيل خاصية الترحيب قم بعمل قناة اسمها "wlc"
+
+╔[❖════════════❖]╗
+                      العاب
+╚[❖════════════❖]╝
+  
+❖ *فكك
+
+❖ *لغز
+
+❖ *كتابه
+
+❖ *رياضيات
+
+❖ *ركب
+
+❖ *xo
+
+❖ *نقاطي
+
+❖ *top
+
+╔[❖════════════❖]╗
+                      قران
+╚[❖════════════❖]╝
+
+❖ *qran
 
 ==================================================================
 
@@ -599,14 +558,7 @@ client.on('message', message => {
     });
 
 
-client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === "*help") {
-	    
-                        message.channel.send('**Choose**: *helpar ➾ arabic | *helpen ➾ english');
 
-    }
-});
 
 
 client.on("guildDelete", guild => {
@@ -746,29 +698,801 @@ client.on("message", msg => {
 });
 
 
-const invites = {};
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const fs = require("fs"); 
+const Canvas = require("canvas");
+const jimp = require("jimp");
+   let points = {}
+   
+const prefix = '*'
+  client.on('message', message => {
+    if(message.author.bot) return;
+            if (!points[message.author.id]) points[message.author.id] = {
+             points: 0,id: message.author.id
+           };
+              if (message.content.startsWith(prefix + 'فكك')) {
+                if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
-const wait = require('util').promisify(setTimeout);
+              const type = require('./fkk.json');
+              const item = type[Math.floor(Math.random() * type.length)];
+           let author = message.author;
+              const filter = response => {
+                
+                  return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+              };
+              message.channel.send('**لديك 15 ثانيه لتفكيك الكلمه**').then(msg => {
 
-client.on('ready', () => {
-  wait(1000);
+ const w = ['./img/w1.png'];//الخافيه
+            let Image = Canvas.Image,
+            canvas = new Canvas(400, 150),
+            ctx = canvas.getContext('2d');
+    
+            fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 150);
+ 
+});
+ let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
+               jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                       
+                      
+                        ctx.font = '15px Arial';
+                              ctx.fontSize = '10px';
+                              ctx.fillStyle = "#FFFFFF";
+                              ctx.textAlign = "center";
+              ctx.fillText(`${item.type} ` , 250, 100);
+              
+               let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(70, 80, 63, 0, Math.PI*2);
+                                 ctx.closePath();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 8, 18, 128, 126);   
+message.channel.sendFile(canvas.toBuffer());
+ })
+             
+                      message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })//وقت الاجابة
+                      .then((collected) => {
+                           var embed = new Discord.RichEmbed()
+                            .setDescription(`${collected.first().author} ✅ احسنت لقد تمكنت من تفكيك الكلمه بسرعه`)
+                 message.channel.send(embed);
+                  console.log(`[Typing] ${collected.first().author} typed the word.`);
+                          let won = collected.first().author;
+                          points[won.id].points++;
+                        })
+                        .catch(collected => {
+                       var embed1 = new Discord.RichEmbed()
+                            .setDescription(`:x: لم يتمكن احد من تفكيك الكلمه في الوقت المناسب`)
+                 message.channel.send(embed1);
+                    console.log('[Typing] Error: No one type the word.');
+           
+                  })
+                })
+             
+  })
+}
 
-  client.guilds.forEach(g => {
-    g.fetchInvites().then(guildInvites => {
-      invites[g.id] = guildInvites;
-    });
-  });
 });
 
-client.on('guildMemberAdd', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    invites[member.guild.id] = guildInvites;
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name ==='name', 'wlc');
-    logChannel.send(`${member} Invited by: <@${inviter.id}>`);
-  });
+
+
+
+client.on('message', message => {
+	 if(message.author.bot) return;
+  if (!points[message.author.id]) points[message.author.id] = {
+             points: 0,id: message.author.id
+           };if (message.content.startsWith(prefix + 'لغز')) {
+	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+
+const type = require('./quiz.json');
+const item = type[Math.floor(Math.random() * type.length)];
+const filter = response => {
+    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+};
+message.channel.send('**لديك 15 ثانيه لحل هذه الغز**').then(msg => {
+ const w = ['./img/w1.png'];//الخافيه
+            let Image = Canvas.Image,
+            canvas = new Canvas(400, 150),
+            ctx = canvas.getContext('2d');
+    
+            fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 150);
+ 
+});
+ let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
+               jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                       
+                      
+                        ctx.font = '15px Arial';
+                              ctx.fontSize = '10px';
+                              ctx.fillStyle = "#FFFFFF";
+                              ctx.textAlign = "center";
+              ctx.fillText(`${item.type} ` , 250, 100);
+              
+               let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(70, 80, 63, 0, Math.PI*2);
+                                 ctx.closePath();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 8, 18, 128, 126);   
+message.channel.sendFile(canvas.toBuffer());
+ })
+             
+                      message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })//وقت الاجابة
+                      .then((collected) => {
+                           var embed = new Discord.RichEmbed()
+                            .setDescription(`${collected.first().author} ✅ احسنت لقت تمكنت من حل الغز`)
+                 message.channel.send(embed);
+                  console.log(`[Typing] ${collected.first().author} typed the word.`);
+                          let won = collected.first().author;
+                          points[won.id].points++;
+                        })
+                        .catch(collected => {
+                       var embed1 = new Discord.RichEmbed()
+                            .setDescription(`:x:لم يتمكن احد من حل الغز `)
+                 message.channel.send(embed1);
+                    console.log('[Typing] Error: No one type the word.');
+           
+                  })
+                })
+             
+  })
+}
+
+});
+
+
+client.on('message', message => {
+	 if(message.author.bot) return;
+     if (!points[message.author.id]) points[message.author.id] = {
+             points: 0,id: message.author.id
+           };
+    if (message.content.startsWith(prefix+ 'ركب')) {
+      if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+    
+    const type = require('./rkb.json');
+    const item = type[Math.floor(Math.random() * type.length)];
+    const filter = response => {
+        return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+    };
+    message.channel.send('**لديك 15 ثانيه لتركيب الكلمه**').then(msg => {
+ const w = ['./img/w1.png'];//الخافيه
+            let Image = Canvas.Image,
+            canvas = new Canvas(400, 150),
+            ctx = canvas.getContext('2d');
+    
+            fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 150);
+ 
+});
+ let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
+               jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                       
+                      
+                        ctx.font = '15px Arial';
+                              ctx.fontSize = '10px';
+                              ctx.fillStyle = "#FFFFFF";
+                              ctx.textAlign = "center";
+              ctx.fillText(`${item.type} ` , 250, 100);
+              
+               let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(70, 80, 63, 0, Math.PI*2);
+                                 ctx.closePath();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 8, 18, 128, 126);   
+message.channel.sendFile(canvas.toBuffer());
+ })
+             
+                      message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })//وقت الاجابة
+                      .then((collected) => {
+                           var embed = new Discord.RichEmbed()
+                            .setDescription(`${collected.first().author} ✅ احسنت لقد ركبت الكلمة`)
+                 message.channel.send(embed);
+                  console.log(`[Typing] ${collected.first().author} typed the word.`);
+                          let won = collected.first().author;
+                          points[won.id].points++;
+                        })
+                        .catch(collected => {
+                       var embed1 = new Discord.RichEmbed()
+                            .setDescription(`:x: لم يتمكن احد من تركيب الكلمة`)
+                 message.channel.send(embed1);
+                    console.log('[Typing] Error: No one type the word.');
+           
+                  })
+                })
+             
+  })
+}
+
+});
+
+
+
+
+
+
+
+client.on('message', message => {
+	 if(message.author.bot) return;
+       if (!points[message.author.id]) points[message.author.id] = {
+             points: 0,id: message.author.id
+           };
+      if (message.content.startsWith(prefix + 'كتابه')) {
+        if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+      
+      const type = require('./type.json');
+      const item = type[Math.floor(Math.random() * type.length)];
+      const filter = response => {
+          return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+      };
+      message.channel.send('** لديك 15 ثانيه لكتابه هذه الكلمه بسرعة**').then(msg => {
+      
+ const w = ['./img/w1.png'];//الخافيه
+            let Image = Canvas.Image,
+            canvas = new Canvas(400, 150),
+            ctx = canvas.getContext('2d');
+    
+            fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 150);
+ 
+});
+ let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
+               jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                       
+                      
+                        ctx.font = '15px Arial';
+                              ctx.fontSize = '10px';
+                              ctx.fillStyle = "#FFFFFF";
+                              ctx.textAlign = "center";
+              ctx.fillText(`${item.type} ` , 250, 100);
+              
+               let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(70, 80, 63, 0, Math.PI*2);
+                                 ctx.closePath();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 8, 18, 128, 126);   
+message.channel.sendFile(canvas.toBuffer());
+ })
+             
+                      message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })//وقت الاجابة
+                      .then((collected) => {
+                           var embed = new Discord.RichEmbed()
+                            .setDescription(`${collected.first().author} ✅ **احسنت لقد تمكنت من كتابه هذه الكلمه بسرعه**`)
+                 message.channel.send(embed);
+                  console.log(`[Typing] ${collected.first().author} typed the word.`);
+                          let won = collected.first().author;
+                          points[won.id].points++;
+                        })
+                        .catch(collected => {
+                       var embed1 = new Discord.RichEmbed()
+                            .setDescription(`:x: **لم يتمكن احد من كتابه هذه الكلمه في الوقت المناسب**`)
+                 message.channel.send(embed1);
+                    console.log('[Typing] Error: No one type the word.');
+           
+                  })
+                })
+             
+  })
+}
+
+});
+
+
+
+
+ client.on('message', message => {
+	  if(message.author.bot) return;
+      if (!points[message.author.id]) points[message.author.id] = {
+             points: 0,id: message.author.id
+           };
+    if (message.content.startsWith(prefix + 'رياضيات')) {
+      if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+    
+    const type = require('./math.json');
+    const item = type[Math.floor(Math.random() * type.length)];
+    const filter = response => {
+        return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+    };
+    message.channel.send('**لديك 15 ثانيه لحل المسئله**').then(msg => {
+ const w = ['./img/w1.png'];//الخافيه
+            let Image = Canvas.Image,
+            canvas = new Canvas(400, 150),
+            ctx = canvas.getContext('2d');
+    
+            fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 150);
+ 
+});
+ let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
+               jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                       
+                      
+                        ctx.font = '15px Arial';
+                              ctx.fontSize = '10px';
+                              ctx.fillStyle = "#FFFFFF";
+                              ctx.textAlign = "center";
+              ctx.fillText(`${item.type} ` , 250, 100);
+              
+               let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(70, 80, 63, 0, Math.PI*2);
+                                 ctx.closePath();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 8, 18, 128, 126);   
+message.channel.sendFile(canvas.toBuffer());
+ })
+             
+                       message.channel.awaitMessages(filter,{
+               thing: true,
+               maxMatches : 1,
+                time : 60000,
+                 maxUses: 1,
+                errors : ['time']
+            })//وقت الاجابة
+                      .then((collected) => {
+                           var embed = new Discord.RichEmbed()
+                            .setDescription(`${collected.first().author} ✅ **احسنت لقد تمكنت من أجابه عن معادله بسرعه**`)
+                 message.channel.send(embed);
+                  console.log(`[Typing] ${collected.first().author} typed the word.`);
+                          let won = collected.first().author;
+                          points[won.id].points++;
+                        })
+                        .catch(collected => {
+                       var embed1 = new Discord.RichEmbed()
+                            .setDescription(`:x: **لم يتمكن احد من حل معادله في الوقت المناسب**`)
+                 message.channel.send(embed1);
+                    console.log('[Typing] Error: No one type the word.');
+           
+                  })
+                })
+             
+  })
+}
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+client.on('message', message => {
+      if(message.author.bot) return;
+if (message.content.startsWith(prefix + 'top')) {
+    let _top = 1;
+     let topp = Object.values(points);
+ let top = topp.slice(0, 10).map(users => `**\`.${_top++}\` | <@${users.id}> \`XP: ${users.points}\`**`).sort((a, b) => a > b).join('\n');
+    const prefixlor = new Discord.RichEmbed()
+      .setTitle("Leaderboard")
+      .setAuthor(client.user.username, client.user.avatarURL)
+      .setDescription(top,true)
+   
+  	message.channel.sendEmbed(prefixlor)
+}
+  
+});
+
+client.on('message', message => {
+      if(message.author.bot) return;
+if (message.content.startsWith(prefix + 'نقاطي')) {
+	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+	let userData = points[message.author.id];
+	let embed = new Discord.RichEmbed()
+    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+	.setColor('#000000')
+	.setDescription(`نقاطك: \`${userData.points}\``)
+	message.channel.sendEmbed(embed)
+  }
+});
+client.on('message', message => {
+  if(message.author.bot) return;
+if (message.content.startsWith(prefix + 'points')) {
+if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+let userData = points[message.author.id];
+let embed = new Discord.RichEmbed()
+.setAuthor(`${message.author.tag}`, message.author.avatarURL)
+.setColor('#000000')
+.setDescription(`نقاطك: \`${userData.points}\``)
+message.channel.sendEmbed(embed)
+}
+});
+
+
+
+   
+
+client.on('message' , message => {
+  if(message.author.bot) return;
+  if(message.content.startsWith(prefix + "xo")) {
+ let array_of_mentions = message.mentions.users.array();
+  let symbols = [':o:', ':heavy_multiplication_x:']
+  var grid_message;
+ 
+  if (array_of_mentions.length == 1 || array_of_mentions.length == 2) {
+    let random1 = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
+    let random2 = Math.abs(random1 - 1);
+    if (array_of_mentions.length == 1) {
+      random1 = 0;
+      random2 = 0;
+    }
+    var player1_id = message.author.id
+    let player2_id = array_of_mentions[random2].id;
+    var turn_id = player1_id;
+    var symbol = symbols[0];
+    let initial_message = `اللعبة بين اللاعبين التاليين <@${player1_id}> and <@${player2_id}>!`;
+    if (player1_id == player2_id) {
+      initial_message += '\n_(لقد خسرت, العب مع نفسك :joy:)_'
+    }
+    message.channel.send(`Xo ${initial_message}`)
+    .then(console.log("Successful tictactoe introduction"))
+    .catch(console.error);
+    message.channel.send(':one::two::three:' + '\n' +
+                         ':four::five::six:' + '\n' +
+                         ':seven::eight::nine:')
+    .then((new_message) => {
+      grid_message = new_message;
+    })
+    .then(console.log("Successful tictactoe game initialization"))
+    .catch(console.error);
+    message.channel.send('Loading... Please wait for the :ok: reaction.')
+    .then(async (new_message) => {
+      await new_message.react('1⃣');
+      await new_message.react('2⃣');
+      await new_message.react('3⃣');
+      await new_message.react('4⃣');
+      await new_message.react('5⃣');
+      await new_message.react('6⃣');
+      await new_message.react('7⃣');
+      await new_message.react('8⃣');
+      await new_message.react('9⃣');
+      await new_message.react('🆗');
+      await new_message.edit(`It\'s <@${turn_id}>\'s اشتغل! الرمز هو ${symbol}`)
+      .then((new_new_message) => {
+        require('./xo.js')(client, message, new_new_message, player1_id, player2_id, turn_id, symbol, symbols, grid_message);
+      })
+      .then(console.log("Successful tictactoe listeprefix initialization"))
+      .catch(console.error);
+    })
+    .then(console.log("Successful tictactoe react initialization"))
+    .catch(console.error);
+  }
+  else {
+    message.channel.send(`جرب *xo @uesr`)
+    .then(console.log("Successful error reply"))
+    .catch(console.error);
+  }
+}
+ });  
+
+client.on("message", function(message) {
+    var prefix = "*";
+   if(message.content.startsWith(prefix + "rps")) {
+    let messageArgs = message.content.split(" ").slice(1).join(" ");
+    let messageRPS = message.content.split(" ").slice(2).join(" ");
+    let arrayRPS = ['**# - Rock**','**# - Paper**','**# - Scissors**'];
+    let result = `${arrayRPS[Math.floor(Math.random() * arrayRPS.length)]}`;
+    var RpsEmbed = new Discord.RichEmbed()
+    .setAuthor(message.author.username)
+    .setThumbnail(message.author.avatarURL)
+    .addField("Rock","🇷",true)
+    .addField("Paper","🇵",true)
+    .addField("Scissors","🇸",true)
+    message.channel.send(RpsEmbed).then(msg => {
+        msg.react(' 🇷')
+        msg.react("🇸")
+        msg.react("🇵")
+.then(() => msg.react('🇷'))
+.then(() =>msg.react('🇸'))
+.then(() => msg.react('🇵'))
+let reaction1Filter = (reaction, user) => reaction.emoji.name === '🇷' && user.id === message.author.id;
+let reaction2Filter = (reaction, user) => reaction.emoji.name === '🇸' && user.id === message.author.id;
+let reaction3Filter = (reaction, user) => reaction.emoji.name === '🇵' && user.id === message.author.id;
+let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+       
+let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
+let reaction3 = msg.createReactionCollector(reaction3Filter, { time: 12000 });
+reaction1.on("collect", r => {
+        message.channel.send(result)
+})
+reaction2.on("collect", r => {
+        message.channel.send(result)
+})
+reaction3.on("collect", r => {
+        message.channel.send(result)
+})
+ 
+    })
+}
+});
+
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  if (message.content.toLowerCase().startsWith(prefix + `258767+96746476`)) {
+    const embed = new Discord.RichEmbed()
+    .setTitle(`:mailbox_with_mail: Vulnix Help`)
+    .setColor(0xCF40FA)
+    .setDescription(`Hello! I'm Vulnix, the Discord bot for super cool support ticket stuff and more! Here are my commands:`)
+    .addField(`Tickets`, `[${prefix}new]() > Opens up a new ticket and tags the Support Team\n[${prefix}close]() > Closes a ticket that has been resolved or been opened by accident`)
+    .addField(`Other`, `[${prefix}help]() > Shows you this help menu your reading\n[${prefix}ping]() > Pings the bot to see how long it takes to react\n[${prefix}about]() > Tells you all about Vulnix`)
+    message.channel.send({ embed: embed });
+  }
+
+  if (message.content.toLowerCase().startsWith(prefix + `ping`)) {
+    message.channel.send(`Hoold on!`).then(m => {
+    m.edit(`:ping_pong: Wew, made it over the ~waves~ ! **Pong!**\nMessage edit time is ` + (m.createdTimestamp - message.createdTimestamp) + `ms, Discord API heartbeat is ` + Math.round(client.ping) + `ms.`);
+    });
+}
+
+if (message.content.toLowerCase().startsWith(prefix + `new`)) {
+    const reason = message.content.split(" ").slice(1).join(" ");
+    if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
+    if (message.guild.channels.exists("name", "ticket-" + message.author.id)) return message.channel.send(`You already have a ticket open.`);
+    message.guild.createChannel(`ticket-${message.author.id}`, "text").then(c => {
+        let role = message.guild.roles.find("name", "Support Team");
+        let role2 = message.guild.roles.find("name", "@everyone");
+        c.overwritePermissions(role, {
+            SEND_MESSAGES: true,
+            READ_MESSAGES: true
+        });
+        c.overwritePermissions(role2, {
+            SEND_MESSAGES: false,
+            READ_MESSAGES: false
+        });
+        c.overwritePermissions(message.author, {
+            SEND_MESSAGES: true,
+            READ_MESSAGES: true
+        });
+        message.channel.send(`:white_check_mark: Your ticket has been created, #${c.name}.`);
+        const embed = new Discord.RichEmbed()
+        .setColor(0xCF40FA)
+        .addField(`Hey ${message.author.username}!`, `Please try explain why you opened this ticket with as much detail as possible. Our **Support Team** will be here soon to help.`)
+        .setTimestamp();
+        c.send({ embed: embed });
+    }).catch(console.error);
+}
+if (message.content.toLowerCase().startsWith(prefix + `close`)) {
+    if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
+
+    message.channel.send(`Are you sure? Once confirmed, you cannot reverse this action!\nTo confirm, type \`-confirm\`. This will time out in 10 seconds and be cancelled.`)
+    .then((m) => {
+      message.channel.awaitMessages(response => response.content === '-confirm', {
+        max: 1,
+        time: 10000,
+        errors: ['time'],
+      })
+      .then((collected) => {
+          message.channel.delete();
+        })
+        .catch(() => {
+          m.edit('Ticket close timed out, the ticket was not closed.').then(m2 => {
+              m2.delete();
+          }, 3000);
+        });
+    });
+}
+
+});
+
+
+client.on('message', message => {
+	if(message.content.startsWith(prefix + 'qran')) {
+		message.delete();
+    const voiceChannel = message.member.voiceChannel;
+    if (!voiceChannel) return message.reply(`**يحب ان تكون في روم صوتي**`);
+
+	let embed = new Discord.RichEmbed()
+    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+	.setColor('#000000')
+	.setFooter("بوت القرآن | صدقة جارية للجميع", 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiqVT5PZAfcy8qZxlr3SQv3mmCw9zPiu2YBLIQ4bBePL2jLm7h')
+      .setDescription(` 
+     🕋 اوامر بوت القرآن الكريم 🕋
+	 
+🇦 القرآن كاملاً ماهر المعيقلي
+🇧 سورة البقرة كاملة للشيخ مشاري العفاسي
+🇨 سورة الكهف كاملة بصوت مشارى بن راشد العفاسي
+⏹ لإيقاف القرآن الكريم
+🇩 القرآن كاملاً عبدالباسط عبدالصمد
+🇪 القرآن كاملاً ياسر الدوسري
+🇫 سورة الواقعه بصوت الشيخ مشاري بن راشد العفاسي`)
+	
+	message.channel.sendEmbed(embed).then(msg => {
+			msg.react('🇦')
+		.then(() => msg.react('🇧'))
+		.then(() => msg.react('🇨'))
+		.then(() => msg.react('⏹'))
+		.then(() => msg.react('🇩'))
+		.then(() => msg.react('🇪'))
+		.then(() => msg.react('🇫'))
+
+// Filters		
+	let filter1 = (reaction, user) => reaction.emoji.name === '🇦' && user.id === message.author.id;
+	let filter2 = (reaction, user) => reaction.emoji.name === '🇧' && user.id === message.author.id;
+	let filter3 = (reaction, user) => reaction.emoji.name === '🇨' && user.id === message.author.id;
+	let filter4 = (reaction, user) => reaction.emoji.name === '⏹' && user.id === message.author.id;
+	let filter5 = (reaction, user) => reaction.emoji.name === '🇩' && user.id === message.author.id;
+	let filter6 = (reaction, user) => reaction.emoji.name === '🇪' && user.id === message.author.id;
+	let filter7 = (reaction, user) => reaction.emoji.name === '🇫' && user.id === message.author.id;
+
+// Collectors
+	let collector1 = msg.createReactionCollector(filter1, { time: 120000 });
+	let collector2 = msg.createReactionCollector(filter2, { time: 120000 });
+	let collector3 = msg.createReactionCollector(filter3, { time: 120000 });
+	let collector4 = msg.createReactionCollector(filter4, { time: 120000 });
+	let collector5 = msg.createReactionCollector(filter5, { time: 120000 });
+	let collector6 = msg.createReactionCollector(filter6, { time: 120000 });
+	let collector7 = msg.createReactionCollector(filter7, { time: 120000 });
+	
+// Events
+collector1.on('collect', r => {
+    voiceChannel.join()
+      .then(connnection => {
+        const stream = ytdl("https://www.youtube.com/watch?v=Ktync4j_nmA", { filter: 'audioonly' });
+        const dispatcher = connnection.playStream(stream);
+        dispatcher.on('end', () => voiceChannel.leave());
+		collector1.stop();
+		collector2.stop();
+		collector3.stop();
+		collector4.stop();
+		collector5.stop();
+		collector6.stop();
+		collector7.stop();
+		embed.setDescription(`<@${message.author.id}> **تم تشغيل القرآن الكريم**`);
+		msg.edit(embed).then(msg.delete(5000));
+   });
+});
+collector2.on('collect', r => {
+    voiceChannel.join()
+      .then(connnection => {
+        const stream = ytdl("https://www.youtube.com/watch?v=qFq5h4wtjaM&t=30s", { filter: 'audioonly' });
+        const dispatcher = connnection.playStream(stream);
+        dispatcher.on('end', () => voiceChannel.leave());
+		collector1.stop();
+		collector2.stop();
+		collector3.stop();
+		collector4.stop();
+		collector5.stop();
+		collector6.stop();
+		collector7.stop();
+		embed.setDescription(`<@${message.author.id}> **تم تشغيل القرآن الكريم**`);
+		msg.edit(embed).then(msg.delete(5000));
+      });
+});
+collector3.on('collect', r => {
+    voiceChannel.join()
+      .then(connnection => {
+        const stream = ytdl("https://www.youtube.com/watch?v=8UWKiKGQmsE", { filter: 'audioonly' });
+        const dispatcher = connnection.playStream(stream);
+        dispatcher.on('end', () => voiceChannel.leave());
+		collector1.stop();
+		collector2.stop();
+		collector3.stop();
+		collector4.stop();
+		collector5.stop();
+		collector6.stop();
+		collector7.stop();
+		embed.setDescription(`<@${message.author.id}> **تم تشغيل القرآن الكريم**`);
+		msg.edit(embed).then(msg.delete(5000));
+      });
+});
+collector4.on('collect', r => {
+	if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+		collector1.stop();
+		collector2.stop();
+		collector3.stop();
+		collector4.stop();
+		collector5.stop();
+		collector6.stop();
+		collector7.stop();
+		embed.setDescription(`<@${message.author.id}> **تم إيقاف القرآن الكريم**`);
+		msg.edit(embed).then(msg.delete(5000));
+});
+collector5.on('collect', r => {
+    voiceChannel.join()
+      .then(connnection => {
+        const stream = ytdl("https://www.youtube.com/watch?v=vqXLGtZcUm8", { filter: 'audioonly' });
+        const dispatcher = connnection.playStream(stream);
+        dispatcher.on('end', () => voiceChannel.leave());
+		collector1.stop();
+		collector2.stop();
+		collector3.stop();
+		collector4.stop();
+		collector5.stop();
+		collector6.stop();
+		collector7.stop();
+		embed.setDescription(`<@${message.author.id}> **تم تشغيل القرآن الكريم**`);
+		msg.edit(embed).then(msg.delete(5000));
+      });
+});
+collector6.on('collect', r => {
+    voiceChannel.join()
+      .then(connnection => {
+        const stream = ytdl("https://www.youtube.com/watch?v=WYT0pQne-7w", { filter: 'audioonly' });
+        const dispatcher = connnection.playStream(stream);
+        dispatcher.on('end', () => voiceChannel.leave());
+		collector1.stop();
+		collector2.stop();
+		collector3.stop();
+		collector4.stop();
+		collector5.stop();
+		collector6.stop();
+		collector7.stop();
+		embed.setDescription(`<@${message.author.id}> **تم تشغيل القرآن الكريم**`);
+		msg.edit(embed).then(msg.delete(5000));
+      });
+});
+collector7.on('collect', r => {
+    voiceChannel.join()
+      .then(connnection => {
+        const stream = ytdl("https://www.youtube.com/watch?v=LTRcg-gR78o", { filter: 'audioonly' });
+        const dispatcher = connnection.playStream(stream);
+        dispatcher.on('end', () => voiceChannel.leave());
+		collector1.stop();
+		collector2.stop();
+		collector3.stop();
+		collector4.stop();
+		collector5.stop();
+		collector6.stop();
+		collector7.stop();
+		embed.setDescription(`<@${message.author.id}> **تم تشغيل القرآن الكريم**`);
+		msg.edit(embed).then(msg.delete(5000));
+      });
+});
+})
+}
 });
 
 
