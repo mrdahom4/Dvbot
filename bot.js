@@ -189,11 +189,7 @@ client.on('message', message => {
 
  message.author.sendMessage(`
  **
-__~~DvBot~~__ By:! Lòrans. ♪#3910
 
-╔[❖════════════❖]╗
-                  Prefix = ' * '
-╚[❖════════════❖]╝
 
 ╔[❖════════════❖]╗
                     اوامر ادارية
@@ -225,6 +221,8 @@ __~~DvBot~~__ By:! Lòrans. ♪#3910
 ❖ *avatar ➾ شعار حسابك
 
 ❖ *ser-av ➾ شعار السيرفر
+
+❖ *new ➾فتح تزكره 
 
 ❖ *id ➾ اي دي
 
@@ -279,7 +277,6 @@ __~~DvBot~~__ By:! Lòrans. ♪#3910
 ❖ *qran
 
 ==================================================================
-
 
 
 link Bot : https://discordapp.com/oauth2/authorize?client_id=525574514747113474&permissions=0&scope=bot
