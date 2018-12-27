@@ -37,12 +37,7 @@ client.on('ready', () => {
 });
 
 
-client.on('ready', () => {
-  client.user.setGame('#help | #invite','https://www.twitch.tv/peery13');
-  console.log('---------------');
-  console.log(' Bot Is Online')
-  console.log('---------------')
-});
+
 	
 client.on('ready', function(){
     var ms = 200000 ;    
