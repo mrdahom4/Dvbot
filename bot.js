@@ -698,8 +698,7 @@ client.on("message", msg => {
 
 
 
-   
-const prefix = '#'
+
   client.on('message', message => {
     if(message.author.bot) return;
             if (!points[message.author.id]) points[message.author.id] = {
