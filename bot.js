@@ -250,7 +250,7 @@ __~~DvBot~~__ By:! Lòrans. ♪#3910
                       الترحيب
 ╚[❖════════════❖]╝
 
-لتفعيل خاصية الترحيب قم بعمل قناة اسمها "wlc"
+لتفعيل خاصية الترحيب قم بعمل قناة اسمها "welcome"
 
 ╔[❖════════════❖]╗
                       العاب
@@ -657,7 +657,7 @@ client.on('guildMemberAdd', member => {
     .setColor('GREEN')
     .setFooter('DvBot')
 
-var channel =member.guild.channels.find('name', 'wlc')
+var channel =member.guild.channels.find('name', 'welcome')
 if (!channel) return;
 channel.send({embed : embed});
 });
@@ -672,7 +672,7 @@ client.on('guildMemberRemove', member => {
     .setColor('RED')
     .setFooter(`DvBot`, '')
 
-var channel =member.guild.channels.find('name', 'wlc')
+var channel =member.guild.channels.find('name', 'welcome')
 if (!channel) return;
 channel.send({embed : embed});
 });
