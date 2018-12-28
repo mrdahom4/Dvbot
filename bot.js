@@ -37,7 +37,23 @@ client.on('ready', () => {
 });
 
 
-
+client.on('ready', function(){
+    var ms = 200000 ;    
+    var setGame = ['#help','#invite','V1.5'];    
+    var i = -1;    
+    var j = 0;    
+    setInterval(function (){    
+        if( i == -1 ){    
+j = 1;    
+       }    
+        if( i == (setGame.length)-1 ){    
+            j = -1;    
+      }    
+       i = i+j;    
+        client.user.setGame(setGame[i],`https://twitch.tv/Codes`);    
+}, ms);    
+    
+}); 
 
 client.on("message", message => {
     var args = message.content.split(' ').slice(1);
