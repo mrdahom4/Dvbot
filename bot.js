@@ -583,7 +583,6 @@ client.channels.get(`ID Chat admin`).sendMessage("** تم طرد هذا الشخ
 
 
 
-
 client.on("message", message => {    
           if(!message.channel.guild) return;
    if(message.author.bot) return;
