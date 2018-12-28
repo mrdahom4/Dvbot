@@ -565,17 +565,7 @@ client.channels.get(`ID Chat admin`).sendMessage("** تم طرد هذا الشخ
         });
 
 
-client.on('message', message => {
-            let muteRole = message.guild.roles.find("name", "Muted");
 
- if (message.content.startsWith(prefix + "unmute")) {
-              if(!message.channel.guild) return message.reply message.channel.send("هذا الامر للسيرفرات فقط :no_entry: ");
-                if(!message.member.hasPermission('ADMINISTATOR')) return message.channel.send('**لا تملك برمشن** `ADMINISTATOR`' );
-                if(!mutePerson) return message.channel.send('**Mention Someone**')
-
-                   message.guild.member(mutePerson).removeRole(muteRole);
-}
-});
 
 
 client.on("message", message => {    
