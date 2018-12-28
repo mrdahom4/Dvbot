@@ -381,40 +381,18 @@ client.on('message', function(msg) {
   });
 
 
-client.on('message', message => {
-        if (message.author.id === client.user.id) return;
-        if (message.guild) {
-       let embed = new Discord.RichEmbed()
-        let args = message.content.split(' ').slice(1).join(' ');
-    if(message.content.split(' ')[0] == '#bc') {
-        if (!args[1]) {
-    message.channel.send("**.bc <message>**");
-    return;
-    }
-            message.guild.members.forEach(m => {
-       if(!message.member.hasPermission('ADMINISTRATOR')) return;
-                var bc = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .addField('** الـسيرفر**', `${message.guild.name}`,true)
-                .addField(' **الـمرسل **', `${message.author.username}#${message.author.discriminator}`,true)
-                .addField(' **الرسالة** ', args)
-                .setThumbnail(message.guild.iconURL)
-                .setColor('RANDOM')
-                m.send(`${m}`,{embed: bc});
-            });
-            const AziRo = new Discord.RichEmbed()
-            .setAuthor(message.author.username, message.author.avatarURL)   
-            .setTitle('✔️ | جاري ارسال رسالتك ') 
-            .addBlankField(true)
-            .addField('👥 | عدد الاعضاء المرسل لهم ', message.guild.memberCount , true)        
-            .addField('📋| الرسالة ', args)
-            .setColor('RANDOM')  
-            message.channel.sendEmbed(AziRo);          
-        }
-        } else {
-            return;
-        }
-});
+client.on("message", message => {
+    if (message.content.startsWith("#bc")) {
+                 if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' ');
+  message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
+  m.send(`${argresult}\n ${m}`);
+  })
+  message.channel.send(`\`${message.guild.members.filter( m => m.presence.status !== 'all').size}\`:mailbox:  عدد المستلمين `);
+  message.delete();
+  };
+  });
 
 client.on('message', message => {
   var prefix = "#";
