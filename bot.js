@@ -89,8 +89,8 @@ client.on("message", message => {
 	
 client.on('ready', function(){
     var ms = 20000 ;    
-    var setGame = ['#invite','#help','By Lorans','V1.0'];    
-    var i = -2000;    
+    var setGame = ['#invite','#help','DvBot The One','V1.0'];    
+    var i = -1;    
     var j = 0;    
     setInterval(function (){    
         if( i == -1 ){    
@@ -532,7 +532,7 @@ client.channels.get(`ID Chat admin`).sendMessage("** تم طرد هذا الشخ
             let muteRole = message.guild.roles.find("name", "Muted");
             let time = messageArray[2];
             if(message.content.startsWith(prefix + "mute")) {
-              if(!message.channel.guild) return message.reply message.channel.send("هذا الامر للسيرفرات فقط :no_entry: ");
+              if(!message.channel.guild) return message.reply("هذا الامر للسيرفرات فقط :no_entry: ");
                 if(!message.member.hasPermission('ADMINISTATOR')) return message.channel.send('**لا تملك برمشن** `ADMINISTATOR`' );
                 if(!mutePerson) return message.channel.send('**Mention Someone**')
                 if(mutePerson === message.author) return message.channel.send('** :no_entry: لا تستطيع اعطاء نفسك ميوت**');
@@ -564,6 +564,18 @@ client.channels.get(`ID Chat admin`).sendMessage("** تم طرد هذا الشخ
             }
         });
 
+
+client.on('message', message => {
+            let muteRole = message.guild.roles.find("name", "Muted");
+
+ if (message.content.startsWith(prefix + "unmute")) {
+              if(!message.channel.guild) return message.reply message.channel.send("هذا الامر للسيرفرات فقط :no_entry: ");
+                if(!message.member.hasPermission('ADMINISTATOR')) return message.channel.send('**لا تملك برمشن** `ADMINISTATOR`' );
+                if(!mutePerson) return message.channel.send('**Mention Someone**')
+
+                   message.guild.member(mutePerson).removeRole(muteRole);
+}
+});
 
 
 client.on("message", message => {    
