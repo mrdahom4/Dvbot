@@ -563,7 +563,7 @@ client.on('message', message => {
 
 client.on("guildDelete", guild => {
 console.log(`**DvBot** Leave From Server -- = ${guild.name} = -- , Server Owner -- = ${guild.owner.user.username} = --`)
-client.channels.get("390983810889678868").send('**The King Bot** ``Kicked`` From Server - -- = '+`**${guild.name}**`+' = -- '+'**Server Owner** -- =' +`**${guild.owner.user.username}**` +'= --')
+client.channels.get("390983810889678868").send('**DvBot** ``Kicked`` From Server - -- = '+`**${guild.name}**`+' = -- '+'**Server Owner** -- =' +`**${guild.owner.user.username}**` +'= --')
 });
 
 client.on("guildCreate", guild => {
