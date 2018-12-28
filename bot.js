@@ -41,9 +41,9 @@ client.on('ready', () => {
 
 	
 client.on('ready', function(){
-    var ms = 100 ;    
+    var ms = 20000 ;    
     var setGame = ['#invite','#help','By Lorans','V1.0'];    
-    var i = -1;    
+    var i = -2000;    
     var j = 0;    
     setInterval(function (){    
         if( i == -1 ){    
