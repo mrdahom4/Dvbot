@@ -616,7 +616,7 @@ client.on('message', message => {
 let args = message.content.split(' ').slice(1).join(' ');
 if (message.content.startsWith('#bcbot')){
  if(!message.author.id === '520629080333352976') return;
-message.channel.sendMessage('تم , جار أرسال الرسالة')
+message.channel.sendMessage('**جاري الارسال الي جميع السرفرات**')
 client.users.forEach(m =>{
 m.sendMessage(args)
 })
