@@ -141,6 +141,10 @@ client.on('message',async message => {
 
 
 
+
+
+
+
 client.on('message', message => {
         if (message.content.startsWith("#uptime")) {
     let ms = client.uptime;
@@ -668,7 +672,7 @@ client.on('guildCreate', guild => {
 });
 
 client.on('message', message => {
-    var prefix = "*"
+    var prefix = "#"
     if (message.content === "#date") {
         var currentTime = new Date(),
             السنة = currentTime.getFullYear(),
@@ -700,21 +704,16 @@ if (message.content.startsWith("#cv")) {
 }
 });
 
-      client.on('message', message => {
-                                if(!message.channel.guild) return;
-                        if (message.content.startsWith('#ping')) {
-                            if(!message.channel.guild) return;
-                            var msg = `${Date.now() - message.createdTimestamp}`
-                            var api = `${Math.round(client.ping)}`
-                            if (message.author.bot) return;
-                        let embed = new Discord.RichEmbed()
-                        .setAuthor(message.author.username,message.author.avatarURL)
-                        .setColor('RANDOM')
-                        .addField('**Time Taken:**',msg + " ms :signal_strength: ")
-                        .addField('**WebSocket:**',api + " ms :signal_strength: ")
-         message.channel.send({embed:embed});
-                        }
-                    });
+client.on('message' , message => {//Toxic Codes
+  if(message.author.bot) return;//Toxic Codes
+  if(message.content.startsWith(prefix + "ping")) {//Toxic Codes
+ message.channel.send('pong').then((msg) => {//Toxic Codes
+var PinG = `${Date.now() - msg.createdTimestamp}`
+var ApL = `${Math.round(client.ping)}`//Toxic Codes
+      msg.edit(`\`\`\`javascript\nTime taken: ${PinG} ms.\nDiscord API: ${ApL} ms.\`\`\``);//Toxic Codes
+ })//Toxic Codes
+  }  //Toxic Codes
+ });//Toxic Codes
 
 client.on('message', message => {
     if (message.content.startsWith("#avatar")) {
