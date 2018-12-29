@@ -1340,7 +1340,7 @@ reaction3.on("collect", r => {
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-  if (message.content.toLowerCase().startsWith(prefix + `258767+96746476`)) {
+  if (message.content.toLowerCase().startsWith(prefix + `Lorans`)) {
     const embed = new Discord.RichEmbed()
     .setTitle(`:mailbox_with_mail: Vulnix Help`)
     .setColor(0xCF40FA)
@@ -1359,7 +1359,7 @@ client.on("message", (message) => {
 if (message.content.toLowerCase().startsWith(prefix + `new`)) {
     const reason = message.content.split(" ").slice(1).join(" ");
     if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
-    if (message.guild.channels.exists("name", "ticket-" + message.author.id)) return message.channel.send(`You already have a ticket open.`);
+    if (message.guild.channels.exists("name", "ticket-DvBot")) return message.channel.send(`You already have a ticket open.`);
     message.guild.createChannel(`ticket-${message.author.id}`, "text").then(c => {
         let role = message.guild.roles.find("name", "Support Team");
         let role2 = message.guild.roles.find("name", "@everyone");
