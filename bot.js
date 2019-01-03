@@ -127,7 +127,7 @@ client.on('message', message => {
   message.guild.member(user).ban(7, user);
 
 
-  message.channel.send(`✅  ${user} banned from the server ! ✈    `)
+  message.channel.send(`**✅  ${user} banned from the server ! ✈    **`)
 }
 });	
 
@@ -165,7 +165,7 @@ if (command == "embed") {
     if (message.content.startsWith('#kick')) {
         var member= message.mentions.members.first();
         member.kick().then((member) => {
-            message.channel.send('✅  ${user} Kicked from the server ! ✈    ');
+            message.channel.send('**✅  ${user} Kicked from the server ! ✈    **');
         }).catch(() => {
             message.channel.send("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
         });
