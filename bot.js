@@ -130,6 +130,47 @@ client.on('message', message => {
   message.channel.send(`✅  ${user} banned from the server ! ✈    `)
 }
 });	
+
+
+
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+  }
+  
+ 
+
+if (command == "embed") {
+    let say = new Discord.RichEmbed()
+    .setDescription(args.join("  "))
+    .setColor(0x23b2d6)
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
+
+
+});
+
+  client.on('message', (message) => {
+    if (message.content.startsWith('#kick')) {
+        var member= message.mentions.members.first();
+        member.kick().then((member) => {
+            message.channel.send('✅  ${user} Kicked from the server ! ✈    ');
+        }).catch(() => {
+            message.channel.send("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+        });
+    }
+});
  
 
 client.on('message',async message => {
@@ -329,131 +370,114 @@ client.on('message', message => {
  **
 
 
+  ____        ____        _   
+ |  _ \__   _| __ )  ___ | |_ 
+ | | | \ \ / /  _ \ / _ \| __|
+ | |_| |\ V /| |_) | (_) | |_ 
+ |____/  \_/ |____/ \___/ \__|
+                              
 
    اوامر ادارية
 
 
- ❖ #ban <mention > ➾ لتبنيد عضو
+  #ban <mention > ➾ لتبنيد عضو
 
- ❖ #kick <mention > ➾ لطرد عضو
+  #kick <mention > ➾ لطرد عضو
  
- ❖ #mute < mention > ➾ اسكات عضو 
+  #mute < mention > ➾ اسكات عضو 
 
- ❖ #clear  ➾ لتنضيف المحادثة (fixing)
+  #clear  ➾ لتنضيف المحادثة (fixing)
 
- ❖ #role ➾ لتعطي لشخص رتبه او للكل
+  #role ➾ لتعطي لشخص رتبه او للكل
 
- ❖ #cv <name> ➾ صنع روم صوتية
+  #cv <name> ➾ صنع روم صوتية
 
- ❖ #ct <name> ➾ صنع روم كتابية
+  #ct <name> ➾ صنع روم كتابية
 
- ❖ #unmute <mention> ➾ فك الاسكات من العضو
+  #unmute <mention> ➾ فك الاسكات من العضو
   
- ❖ #bc <message> ➾ لارسال رسالة لجميع اعضاء السيرفر
+  #bc <message> ➾ لارسال رسالة لجميع اعضاء السيرفر
 
- ❖ #move ➾ لسحب العضو الي الروم الصوتي
+  #move ➾ لسحب العضو الي الروم الصوتي
 
- ❖ #voice <name> ➾ عمل روم فيوس اونلين
-
-
-    اوامر عامة
+  #voice <name> ➾ عمل روم فيوس اونلين
 
 
-❖ #roll <number> ➾ قرعة
+  الاوامر العامة
 
-❖ #member ➾ معلومات الاعضاء
+  #roll <number> ➾ قرعة
 
-❖ #avatar ➾ شعار حسابك
+  #member ➾ معلومات الاعضاء
 
-❖ #ser-av ➾ شعار السيرفر
+  #avatar ➾ شعار حسابك
 
-❖ #new ➾فتح تزكره 
+  #ser-av ➾ شعار السيرفر
 
-❖ #id ➾ اي دي
+  #new ➾فتح تزكره 
 
-❖ #date ➾ التاريخ
+  #id ➾ اي دي
 
-❖ #invs ➾ رابط دخول سيرفرك
+  #say ➾ البوت يكرر الكلام ورك
+  
+  #date ➾ التاريخ
 
-❖ #own ➾ مسؤول البوت
+  #invs ➾ رابط دخول سيرفرك
 
-❖ #help-ar ➾ المساعدة في العربي
+  #own ➾ مسؤول البوت
 
-❖ #ping ➾ عرض سرعه اتصال البوت
+  #help-ar ➾ المساعدة في العربي
 
-❖ #bot ➾ معلومات البوت
+  #bot ➾ معلومات البوت
 
-❖ #server ➾ معلومات السيرفر
+  #server ➾ معلومات السيرفر
 
-❖ #invite ➾ رابط دعوة البوت
+  #invite ➾ رابط دعوة البوت
 
+  
    الترحيب
 
 
-لتفعيل خاصية الترحيب قم بعمل قناة اسمها "welcome"
+"welcome" لتفعيل خاصية الترحيب قم بعمل قناة اسمها 
 
 
    العاب
 
   
-❖ #فكك
+  #فكك
 
-❖ #لغز
+  #لغز
 
-❖ #كتابه
+  #كتابه
 
-❖ #رياضيات
+  #رياضيات
 
-❖ #ركب
+  #ركب
 
-❖ #xo
+  #xo
 
-❖ #نقاطي
+  #نقاطي
 
-❖ #top
+  #top
 
 
     قران
-
-
-❖ #qran
-
-==================================================================
+	
+	
+  #qran
+  #invite  : لدعوة البوت الى سيرفرك
+  #ping  : لمعرفة سرعة استجابة البوت في الوقت الحالي
+  #support  : سيرفر الدعم الفني
 
 
 link Bot : https://discordapp.com/oauth2/authorize?client_id=525574514747113474&permissions=0&scope=bot
 
 Server Support : https://discord.gg/BzVpKJB
 
-==================================================================**
+**
 
 
 `);
 
-    }
-});
-
-client.on('message', message => {
-    if (message.content.startsWith("رابط")) {
-     if(!message.channel.guild) return;
-if (message.author.bot) return;
-        message.channel.createInvite({
-        thing: true,
-        maxUses: 2,
-        maxAge: 86400
-    }).then(invite =>
-      message.author.sendMessage(invite.url)
-    )
-    const Embed11 = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        .setDescription("تم ارسالك في الخاص")
-   .setFooter("اسم سيررك ",'رابط صوره سيرفرك')
-                   .setTimestamp()
-				message.channel.send('** تم أرسال الرابط برسالة خاصة **');
-
-
-      message.channel.sendEmbed(Embed11).then(message => {message.delete(3000)})
-      message.author.sendEmbed(Embed11)
     }
 });
 
@@ -533,23 +557,6 @@ client.on("message", message => {
   };
   });
 
-client.on('message', message => {
-  var prefix = "#";
-  if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
-
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-  let args = message.content.split(" ").slice(1);
-  if (command == "kick") {
-      if(!message.member.hasPermission('KICK_MEMBERS')) return message.reply('You Dont Have **KICK_MEMBERS** Permission!');
-        var member= message.mentions.members.first();
-        member.kick().then((member) => {
-            message.channel.send(**✅  ${user} kicked from the server ! ✈    **);
-
-        });
-    }
-});
 
 
 
