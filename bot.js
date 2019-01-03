@@ -366,14 +366,14 @@ client.on('message', message => {
 		 
 
 
- message.author.sendMessage(` **```
+ message.author.sendMessage(` **
  ____        ____        _   
  |  _ \__   _| __ )  ___ | |_ 
  | | | \ \ / /  _ \ / _ \| __|
  | |_| |\ V /| |_) | (_) | |_ 
  |____/  \_/ |____/ \___/ \__|
                             
-```
+
    اوامر ادارية
 
 
