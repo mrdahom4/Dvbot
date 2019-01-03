@@ -104,7 +104,32 @@ client.on("message", message => {
     }
 });
 
-	
+client.on('message', message => {
+    var prefix = "#"
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "ban") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+  if (!message.guild.member(user)
+  .bannable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+
+  message.guild.member(user).ban(7, user);
+
+
+  message.channel.send(`✅  ${user} banned from the server ! ✈    `)
+}
+});	
  
 
 client.on('message',async message => {
@@ -307,6 +332,8 @@ client.on('message', message => {
 
    اوامر ادارية
 
+
+ ❖ #ban <mention > ➾ لتبنيد عضو
 
  ❖ #kick <mention > ➾ لطرد عضو
  
@@ -518,12 +545,8 @@ client.on('message', message => {
       if(!message.member.hasPermission('KICK_MEMBERS')) return message.reply('You Dont Have **KICK_MEMBERS** Permission!');
         var member= message.mentions.members.first();
         member.kick().then((member) => {
-            message.channel.send(member.displayName + " Kicked From " + message.guild.name);
-            message.channel.send("By: " + "<@" + message.author.id + ">")
-            message.channel.sendMessage(`تم حفظ السبب وستتم مراجعته من قبل الأونر`)
-client.channels.get(`ID Chat admin`).sendMessage("** تم طرد هذا الشخص من قبل " + message.guild.owner + " سبب مذكور **" + args.join("  "))
-        }).catch(() => {
-            message.channel.send(`:x: I cant kick this member`);
+            message.channel.send(**✅  ${user} kicked from the server ! ✈    **);
+
         });
     }
 });
