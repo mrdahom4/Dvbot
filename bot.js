@@ -38,7 +38,7 @@ client.on('ready', () => {
 
 
 client.on('ready', function(){    
-    var ms = 2000 ;    
+    var ms = 20000 ;    
     var setGame = ['#help','#invite','V1.5'];    
     var i = -1;    
     var j = 0;    
