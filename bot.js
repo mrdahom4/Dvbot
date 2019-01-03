@@ -277,7 +277,7 @@ message.react("❌")
     if(msg.member.hasPermission("MANAGE_MESSAGES")) {
     if (textxt == "") {
         msg.delete().then
-    msg.channel.send("***```ضع عدد الرسائل التي تريد مسحها 👌```***").then(m => m.delete(3000));
+    msg.channel.send("**ضع عدد الرسائل التي تريد مسحها **").then(m => m.delete(3000));
 } else {
     msg.delete().then
     msg.delete().then
@@ -304,9 +304,9 @@ client.on('message', message => {
  **
 
 
-╔[❖════════════❖]╗
-                    اوامر ادارية
-╚[❖════════════❖]╝
+
+   اوامر ادارية
+
 
  ❖ #kick <mention > ➾ لطرد عضو
  
@@ -327,9 +327,10 @@ client.on('message', message => {
  ❖ #move ➾ لسحب العضو الي الروم الصوتي
 
  ❖ #voice <name> ➾ عمل روم فيوس اونلين
-╔[❖════════════❖]╗
-                    اوامر عامة
-╚[❖════════════❖]╝
+
+
+    اوامر عامة
+
 
 ❖ #roll <number> ➾ قرعة
 
@@ -359,15 +360,14 @@ client.on('message', message => {
 
 ❖ #invite ➾ رابط دعوة البوت
 
-╔[❖════════════❖]╗
-                      الترحيب
-╚[❖════════════❖]╝
+   الترحيب
+
 
 لتفعيل خاصية الترحيب قم بعمل قناة اسمها "welcome"
 
-╔[❖════════════❖]╗
-                      العاب
-╚[❖════════════❖]╝
+
+   العاب
+
   
 ❖ #فكك
 
@@ -385,9 +385,9 @@ client.on('message', message => {
 
 ❖ #top
 
-╔[❖════════════❖]╗
-                      قران
-╚[❖════════════❖]╝
+
+    قران
+
 
 ❖ #qran
 
