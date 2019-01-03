@@ -37,8 +37,8 @@ client.on('ready', () => {
 });
 
 
-client.on('ready', function(){
-    var ms = 200000 ;    
+client.on('ready', function(){    
+    var ms = 2000 ;    
     var setGame = ['#help','#invite','V1.5'];    
     var i = -1;    
     var j = 0;    
@@ -50,10 +50,12 @@ j = 1;
             j = -1;    
       }    
        i = i+j;    
-        client.user.setGame(setGame[i],`https://twitch.tv/Codes`);    
+        client.user.setGame(setGame[i],`http://www.youtube.com/gg`);    
 }, ms);    
     
-}); 
+});
+
+
 
 client.on("message", message => {
     var args = message.content.split(' ').slice(1);
@@ -103,23 +105,7 @@ client.on("message", message => {
 });
 
 	
-client.on('ready', function(){
-    var ms = 20000 ;    
-    var setGame = ['#invite','#help','DvBot The One','V1.0'];    
-    var i = -1;    
-    var j = 0;    
-    setInterval(function (){    
-        if( i == -1 ){    
-j = 1;    
-       }    
-        if( i == (setGame.length)-1 ){    
-            j = -1;    
-      }    
-       i = i+j;    
-        client.user.setGame(setGame[i],`https://twitch.tv/Codes`);    
-}, ms);    
-    
-}); 
+ 
 
 client.on('message',async message => {
   if(message.content.startsWith("#voice")) {
