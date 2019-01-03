@@ -366,72 +366,63 @@ client.on('message', message => {
 		 
 
 
- message.author.sendMessage(`
- **
-
-
-  ____        ____        _   
+ message.author.sendMessage(` **```
+ ____        ____        _   
  |  _ \__   _| __ )  ___ | |_ 
  | | | \ \ / /  _ \ / _ \| __|
  | |_| |\ V /| |_) | (_) | |_ 
  |____/  \_/ |____/ \___/ \__|
-                              
-
+                            
+```
    اوامر ادارية
 
 
-  #ban <mention > ➾ لتبنيد عضو
+  #ban <mention >  لتبنيد عضو
 
-  #kick <mention > ➾ لطرد عضو
+  #kick <mention >  لطرد عضو
  
-  #mute < mention > ➾ اسكات عضو 
+  #mute < mention >  اسكات عضو 
 
-  #clear  ➾ لتنضيف المحادثة (fixing)
+  #clear   لتنضيف المحادثة (fixing)
 
-  #role ➾ لتعطي لشخص رتبه او للكل
+  #role  لتعطي لشخص رتبه او للكل
 
-  #cv <name> ➾ صنع روم صوتية
+  #cv <name>  صنع روم صوتية
 
-  #ct <name> ➾ صنع روم كتابية
+  #ct <name>  صنع روم كتابية
 
-  #unmute <mention> ➾ فك الاسكات من العضو
+  #unmute <mention>  فك الاسكات من العضو
   
-  #bc <message> ➾ لارسال رسالة لجميع اعضاء السيرفر
+  #bc <message>  لارسال رسالة لجميع اعضاء السيرفر
 
-  #move ➾ لسحب العضو الي الروم الصوتي
+  #move  لسحب العضو الي الروم الصوتي
 
-  #voice <name> ➾ عمل روم فيوس اونلين
+  #voice   عمل روم فيوس اونلين
 
 
   الاوامر العامة
 
   #roll <number> ➾ قرعة
 
-  #member ➾ معلومات الاعضاء
+  #member  معلومات الاعضاء
 
-  #avatar ➾ شعار حسابك
+  #avatar  شعار حسابك
 
-  #ser-av ➾ شعار السيرفر
+  #ser-av  شعار السيرفر
 
-  #new ➾فتح تزكره 
+  #new فتح تزكره 
 
-  #id ➾ اي دي
+  #id  اي دي
 
-  #say ➾ البوت يكرر الكلام ورك
+  #say  البوت يكرر الكلام ورك
   
-  #date ➾ التاريخ
+  #date  التاريخ
 
-  #invs ➾ رابط دخول سيرفرك
+  #bot  معلومات البوت
 
-  #own ➾ مسؤول البوت
+  #server  معلومات السيرفر
 
-  #help-ar ➾ المساعدة في العربي
-
-  #bot ➾ معلومات البوت
-
-  #server ➾ معلومات السيرفر
-
-  #invite ➾ رابط دعوة البوت
+  #invite  رابط دعوة البوت
 
   
    الترحيب
@@ -460,7 +451,7 @@ client.on('message', message => {
   #top
 
 
-    قران
+    اخري
 	
 	
   #qran
@@ -468,39 +459,12 @@ client.on('message', message => {
   #ping  : لمعرفة سرعة استجابة البوت في الوقت الحالي
   #support  : سيرفر الدعم الفني
 
-
-link Bot : https://discordapp.com/oauth2/authorize?client_id=525574514747113474&permissions=0&scope=bot
-
-Server Support : https://discord.gg/BzVpKJB
-
-**
-
-
-`);
+**`);
 
     }
 });
 
-client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === "#own") {
 
-
- message.author.sendMessage(`
-
-
- 
-**بامكانك دعوة البوت من هنا
-
-https://discordapp.com/oauth2/authorize?client_id=525574514747113474&permissions=0&scope=bot
-
-Server Support : https://discord.gg/BzVpKJB**
-`);
-
-message.channel.send('**تم الارسال في الخاص**');
-
-    }
-});
 
 client.on('message', message => {
     if (message.author.bot) return;
@@ -515,7 +479,7 @@ client.on('message', message => {
 
 https://discordapp.com/oauth2/authorize?client_id=525574514747113474&permissions=0&scope=bot
 
-Server Support : https://discord.gg/BzVpKJB**
+**
 `);
 
 message.channel.send('**تم الارسال في الخاص**');
@@ -523,6 +487,18 @@ message.channel.send('**تم الارسال في الخاص**');
     }
 });
 
+client.on('message', message => {
+    if (message.author.bot) return;
+     if (message.content === "#support") {
+
+
+ message.author.sendMessage(` سيرفر المساعدة : 
+ https://discord.gg/BzVpKJB`);
+
+message.channel.send('**تم الارسال في الخاص**');
+
+    }
+});
 
 client.on('message', function(msg) {
     if(msg.content.startsWith ('#server')) {
